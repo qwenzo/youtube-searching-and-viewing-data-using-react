@@ -3,6 +3,7 @@ import './App.css';
 import YTSearch from 'youtube-api-search'
 import VideosList from './components/videos_list'
 import SearchBar from './components/search_bar'
+import VideoDetails from './components/video_details'
 import _ from 'lodash'
 const API_KEY='AIzaSyCfeMqiIgPQ-9-jVEjGeZkkg7wBYgbkBa8';
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <div className="App container">
       <SearchBar onSearch={videosdelayed} />
+      <VideoDetails video={this.state.videos[0]}/>
       <VideosList videos = {this.state.videos}/>
       
       </div>
