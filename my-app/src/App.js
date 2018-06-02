@@ -10,13 +10,14 @@ class App extends Component {
 
   constructor(props){
     super(props);
-    this.state = {videos:[]};
+    this.state = {videos:[],SelectedVideo:null};
    this.SearchBy('League of Legends');
+  
   }
 
   SearchBy(term) {
     YTSearch({key:API_KEY, term:term},(videos) => {   
-      this.setState({videos});
+      this.setState({videos:videos,SelectedVideo:videos[0]});
      });
   }
   render() {
@@ -24,8 +25,8 @@ class App extends Component {
     return (
       <div className="App container">
       <SearchBar onSearch={videosdelayed} />
-      <VideoDetails video={this.state.videos[0]}/>
-      <VideosList videos = {this.state.videos}/>
+      <VideoDetails video={this.state.SelectedVideo}/>
+      <VideosList videos = {this.state.videos} onVideoSelect = {(SelectedVideo) => this.setState({SelectedVideo}) }/>
       
       </div>
     );
